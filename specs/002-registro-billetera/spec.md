@@ -164,3 +164,14 @@ Como visitante, quiero utilizar el formulario desde mi dispositivo y con teclado
 - El registro se abre en `/register` desde «Regístrate» en el login y también mediante acceso directo a esa ruta. Quedan fuera de alcance la verificación de correo, detección de duplicados, autenticación social, recuperación de contraseña, persistencia, sesiones y documento legal completo. Esta funcionalidad sustituye únicamente el aviso de indisponibilidad de «Regístrate» definido en US5/FR-016 de `001-login-billetera`; las demás acciones del login conservan su comportamiento.
 - No se identificaron BRD ni ARD en el repositorio; si se incorporan, deben revisarse sus secciones aplicables conforme al principio VI de la Constitución.
 - Rige la [Constitución 1.0.0](../../.specify/memory/constitution.md): TDD (I), SOLID (II), separación de responsabilidades y reglas únicas (III–IV), seguridad y minimización de datos (V), conformidad documental (VI), dependencias justificadas (7), accesibilidad y reutilización (8), trazabilidad y controles de integración (9). La planificación DEBE verificar cada principio y definir pruebas previas, trazabilidad FR → escenario → prueba y controles exigidos. Esta especificación fija comportamientos y no selecciona tecnologías ni diseño de implementación.
+## Decisión visual — 2026-10-19
+
+El usuario indicó explícitamente mantener en blanco el texto «KynWallet», «Comienza tu camino
+financiero.» y el párrafo de apoyo del panel izquierdo de registro, conservando el gradiente
+original de la referencia. Se aplica `--neutral-0` (#FFFFFF) a esos tres elementos.
+
+Esta decisión sustituye el ajuste previo a texto oscuro. Conforme a Constitución 8.8, se
+prioriza el diseño para este conflicto concreto. Afecta al contraste de FR-014/SC-005: no se
+declara cumplimiento completo de WCAG AA para esos textos sobre las zonas claras del gradiente.
+La formalización de la excepción de 9.1, incluidos responsables y vencimiento, sigue pendiente
+antes de integrar; no se inventan aprobaciones ni se cambia el resto de los requisitos.

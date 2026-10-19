@@ -145,3 +145,14 @@ README.md                              # ampliar ejecución y validación
 | FR-016 | fake en error, excepción, reintento y comprobación de diagnóstico sin payload |
 
 El setup oficial se ejecutó con Git Bash tras bloqueo del Bash predeterminado. Devolvió rutas válidas de este feature; su campo `BRANCH` contiene el identificador `002-registro-billetera` por resolución de `feature.json`, mientras `git branch --show-current` confirma la rama indicada arriba. No se creó ni cambió rama. Node y npm no están disponibles en el PATH de esta sesión: no se ejecutaron pruebas del producto ni se instalaron dependencias durante planificación.
+## Decisión visual — 2026-10-19
+
+El usuario indicó explícitamente mantener en blanco el texto «KynWallet», «Comienza tu camino
+financiero.» y el párrafo de apoyo del panel izquierdo de registro, conservando el gradiente
+original de la referencia. Se aplica `--neutral-0` (#FFFFFF) a esos tres elementos.
+
+Esta decisión sustituye el ajuste previo a texto oscuro. Conforme a Constitución 8.8, se
+prioriza el diseño para este conflicto concreto. Afecta al contraste de FR-014/SC-005: no se
+declara cumplimiento completo de WCAG AA para esos textos sobre las zonas claras del gradiente.
+La formalización de la excepción de 9.1, incluidos responsables y vencimiento, sigue pendiente
+antes de integrar; no se inventan aprobaciones ni se cambia el resto de los requisitos.
