@@ -1,4 +1,4 @@
-﻿# Quickstart: Ejecución y validación del registro
+# Quickstart: Ejecución y validación del registro
 
 Esta guía describe la validación prevista después de implementar el plan. En la fase de planificación aún no existen la ruta ni los tests de registro; los comandos del proyecto sí están declarados. No considerar esta guía evidencia de pruebas ejecutadas.
 
@@ -30,7 +30,7 @@ Modo ausente también significa éxito. Para simular fallo, cambiar a `unavailab
 
 ## Escenarios de aceptación
 
-1. Abrir `/register`: cuatro campos vacíos, contraseñas ocultas, términos desmarcados y aviso de demostración. Enviar vacío: cinco errores inline, foco en nombre y URL sin cambio.
+1. Abrir `/login` y activar «Regístrate»: navegar a `/register` sin aviso de indisponibilidad. Comprobar también acceso directo a `/register`: cuatro campos vacíos, contraseñas ocultas, términos desmarcados y aviso de demostración. Enviar vacío: cinco errores inline, foco en nombre y URL sin cambio.
 2. Probar correo sin arroba, contraseña de 7, confirmación distinta y aceptación false. Corregir: errores desaparecen al quedar válido; cambiar contraseña original vuelve a evaluar confirmación. Probar límites 100/101, 254/255 y 128/129, espacios y pegado.
 3. Con fake success, completar datos ficticios válidos y aceptar términos. Pulsar Enter o «Crear cuenta»: carga breve, envío único aun con clics repetidos, navegación a `/login` y mensaje de éxito en ≤2 s. Credenciales ingresadas no crean una cuenta autenticable.
 4. Recargar login, volver al registro y usar atrás/adelante: sin datos ni aviso de éxito recuperados. Salir durante envío: respuesta tardía no cambia la ruta. Login sigue aceptando únicamente su configuración ficticia existente.
@@ -71,6 +71,6 @@ Prettier excluye `specs/` en la configuración actual: revisar explícitamente l
 
 ## README y entrega
 
-Durante implementación actualizar README: objetivo login+registro, `/register`, modo fake, comandos, requisitos de Node, límites de demo, referencias visuales y contrato de navegación. Quitar «registro fuera de alcance» de la descripción general, dejando claro que el enlace de entrada del login conserva su comportamiento si no se amplía expresamente el alcance.
+Durante implementación actualizar README: objetivo login+registro, `/register`, modo fake, comandos, requisitos de Node, límites de demo, referencias visuales y contrato de navegación. Quitar «registro fuera de alcance» de la descripción general y documentar el recorrido «Regístrate» del login → `/register` → «Inicia sesión» → `/login`; las demás acciones del login conservan su comportamiento.
 
 En hosting estático, configurar fallback a `index.html` para `/register` y `/login`; comprobar apertura directa y recarga con `npm run preview` y en el destino real. No hay despliegue solicitado en este plan. La entrega requiere revisión por otra persona, controles satisfactorios y aprobación de diferencias visuales según Constitución 8.6.

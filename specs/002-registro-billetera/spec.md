@@ -1,4 +1,4 @@
-﻿# Feature Specification: Registro de usuarios de KynWallet
+# Feature Specification: Registro de usuarios de KynWallet
 
 **Feature Branch**: `feature/registro-johanrene-garcia`
 
@@ -9,6 +9,12 @@
 **Input**: Demostración web de registro con nombre completo, correo, contraseña y confirmación; aceptación obligatoria de términos; validaciones inline; Google y Apple con alerta «Próximamente»; navegación y éxito en `/login`; escritorio con dos paneles y móvil con solo formulario; sin backend ni base de datos.
 
 **Referencias visuales**: [Captura 04 · Registro](../../.prompts/registro/04%20%C2%B7%20Registro.png) y [estilos exportados](../../.prompts/registro/styles.css), correspondientes al nodo `31:2` del [diseño Figma](https://www.figma.com/design/f7uDsv8sh6ZOtK2OitTqtg/Billetera-Virtual---Prototipos?node-id=31-2). Se inspeccionaron los archivos locales; el archivo remoto no fue accesible. La captura de 1440 × 1024 muestra un panel de marca naranja a la izquierda, con logo KynWallet, «Comienza tu camino financiero.», texto de apoyo y tarjeta decorativa; a la derecha, «Crea tu cuenta», «Completa tus datos para comenzar», formulario, términos, acción principal, separador «o regístrate con», Google/Apple y acceso a inicio de sesión. Los colores, tipografía Inter, proporciones y espaciados del CSS constituyen referencia visual, no una obligación de posicionamiento fijo.
+
+## Clarifications
+
+### Session 2026-10-18
+
+- Q: ¿El enlace «Regístrate» de la pantalla de login debe abrir la nueva pantalla de registro? → A: Sí. «Regístrate» abre `/register`; «Inicia sesión» vuelve a `/login`.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -53,17 +59,18 @@ Como visitante, quiero saber qué datos son incorrectos para corregirlos sin per
 
 ### User Story 3 - Usar las acciones secundarias (Priority: P2)
 
-Como visitante, quiero ir a iniciar sesión si ya tengo cuenta y conocer la disponibilidad de las otras opciones de registro.
+Como visitante, quiero abrir el registro desde el login, volver a iniciar sesión si ya tengo cuenta y conocer la disponibilidad de las otras opciones de registro.
 
 **Why this priority**: completa la navegación y evita expectativas de integraciones inexistentes.
 
-**Independent Test**: activar cada acción secundaria desde un formulario parcialmente completado.
+**Independent Test**: abrir registro desde «Regístrate» en el login y activar cada acción secundaria desde un formulario parcialmente completado.
 
 **Acceptance Scenarios**:
 
 1. **Given** la pantalla de registro, **When** se activa «Inicia sesión» en «¿Ya tienes cuenta? Inicia sesión», **Then** se navega a `/login` sin mostrar un éxito de registro y sin conservar los datos abandonados.
 2. **Given** datos parcialmente escritos, **When** se activa Google o Apple, **Then** aparece una alerta con el texto exacto «Próximamente», sin enviar el formulario, validar campos ni navegar; al cerrarla se conservan los datos y el foco vuelve al botón activado.
 3. **Given** el texto destacado «términos y condiciones», **When** se activa, **Then** aparece «Términos y condiciones no disponibles en esta demostración», sin enviar ni alterar la casilla o los datos. El aviso no constituye contenido legal ni consentimiento real.
+4. **Given** la pantalla de login, **When** se activa «Regístrate», **Then** se navega a `/register` y aparece el formulario de registro vacío, sin el aviso de función no disponible; «Inicia sesión» permite volver a `/login`.
 
 ---
 
@@ -122,7 +129,7 @@ Como visitante, quiero utilizar el formulario desde mi dispositivo y con teclado
 - **FR-008**: Todo envío válido DEBE finalizar la simulación y navegar a `/login` con el mensaje de éxito de US1.2, anunciado de manera accesible, visible hasta abandonar o recargar el login. [US1.2–5, US5.4]
 - **FR-009**: El registro DEBE funcionar sin servicios backend ni base de datos; NO DEBE crear cuentas reales, cambiar las cuentas de demostración del login ni enviar, persistir o registrar datos del formulario. Al abandonar o recargar registro, sus datos DEBEN descartarse. [US1.4–5, US3.1 y casos límite]
 - **FR-010**: Google y Apple DEBEN abrir únicamente la alerta «Próximamente», preservar el formulario y devolver el foco al cerrar. [US3.2]
-- **FR-011**: «Inicia sesión» DEBE llevar a `/login` sin mensaje de registro exitoso por esa acción. [US3.1]
+- **FR-011**: «Regístrate» en el login DEBE abrir `/register` con el formulario vacío en lugar de mostrar el aviso de función no disponible; «Inicia sesión» en registro DEBE llevar a `/login` sin mensaje de registro exitoso por esa acción. [US3.1, US3.4]
 - **FR-012**: Ambas contraseñas DEBEN estar ocultas inicialmente y contar con controles independientes, accesibles y reversibles de visibilidad. [US1.1, US4.1–2]
 - **FR-013**: La pantalla DEBE mostrar dos paneles desde 1024 px y solo el formulario por debajo de ese ancho, ser utilizable desde 320 px y conservar estado al redimensionar. [US5.1–2 y casos límite]
 - **FR-014**: La pantalla DEBE cumplir WCAG 2.1 AA, incluyendo etiquetas, errores asociados, foco en el primer control inválido, resultados anunciados, teclado, contraste y ampliación sin pérdida de funcionalidad. [US2.1, US5.3–5]
@@ -153,7 +160,7 @@ Como visitante, quiero utilizar el formulario desde mi dispositivo y con teclado
 - Se retoma la única carpeta `specs/002-registro-billetera` creada antes de la pausa; no se crea una segunda funcionalidad ni se cambia la rama existente.
 - La captura y el CSS locales sustituyen la consulta directa de Figma para esta especificación. No se dispone de variantes móviles, estados de interacción ni errores diseñados; el umbral de 1024 px y las reglas inline son supuestos explícitos. Una referencia adicional podrá ajustarlos.
 - Los máximos de correo y contraseña mantienen coherencia con la especificación existente de login; el máximo de nombre de 100 caracteres limita entradas sin restringir nombres internacionales.
-- `/login` es el destino existente a integrar. Esta funcionalidad añade allí exclusivamente la confirmación transitoria; no cambia autenticación ni habilita el inicio de sesión con datos recién registrados. La especificación de login `001-login-billetera` es una dependencia de navegación, no un BRD ni un ARD.
-- No se requiere enlace de entrada desde el login, ruta específica para registro, verificación de correo, detección de duplicados, autenticación social, recuperación de contraseña, persistencia, sesiones ni documento legal completo. El acceso a la pantalla deberá quedar definido en planificación sin ampliar estas capacidades.
+- `/login` es el destino existente a integrar. Esta funcionalidad añade allí la confirmación transitoria y conecta «Regístrate» con `/register`; no cambia autenticación ni habilita el inicio de sesión con datos recién registrados. La especificación de login `001-login-billetera` es una dependencia de navegación, no un BRD ni un ARD.
+- El registro se abre en `/register` desde «Regístrate» en el login y también mediante acceso directo a esa ruta. Quedan fuera de alcance la verificación de correo, detección de duplicados, autenticación social, recuperación de contraseña, persistencia, sesiones y documento legal completo. Esta funcionalidad sustituye únicamente el aviso de indisponibilidad de «Regístrate» definido en US5/FR-016 de `001-login-billetera`; las demás acciones del login conservan su comportamiento.
 - No se identificaron BRD ni ARD en el repositorio; si se incorporan, deben revisarse sus secciones aplicables conforme al principio VI de la Constitución.
 - Rige la [Constitución 1.0.0](../../.specify/memory/constitution.md): TDD (I), SOLID (II), separación de responsabilidades y reglas únicas (III–IV), seguridad y minimización de datos (V), conformidad documental (VI), dependencias justificadas (7), accesibilidad y reutilización (8), trazabilidad y controles de integración (9). La planificación DEBE verificar cada principio y definir pruebas previas, trazabilidad FR → escenario → prueba y controles exigidos. Esta especificación fija comportamientos y no selecciona tecnologías ni diseño de implementación.

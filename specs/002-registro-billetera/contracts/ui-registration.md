@@ -1,17 +1,18 @@
-﻿# Contract: Interfaz y navegación del registro
+# Contract: Interfaz y navegación del registro
 
 ## Rutas
 
 | Ruta / acción | Resultado |
 | --- | --- |
 | abrir `/register` | formulario vacío y términos false |
+| «Regístrate» en login | navegar a `/register` con formulario vacío, sin aviso de indisponibilidad |
 | abrir `/login` o `/` | login existente, sin aviso de registro previo |
 | éxito de registro | `/login`, formulario de registro desmontado y aviso de éxito |
 | «Inicia sesión» | `/login` sin aviso de éxito |
 | atrás/adelante | render correspondiente a pathname; sin restaurar datos de registro o aviso anterior |
 | ruta desconocida | replace a `/login` |
 
-El acceso a registro se documenta mediante URL directa; este cambio no redefine la acción «Regístrate» de la pantalla de login anterior. No utilizar query strings ni history.state para transportar datos o éxito. Hosting debe servir index.html en rutas SPA.
+El acceso a registro se realiza desde «Regístrate» en el login o mediante URL directa; este cambio sustituye el aviso de indisponibilidad anterior de esa acción y conserva las demás acciones del login. No utilizar query strings ni history.state para transportar datos o éxito. Hosting debe servir index.html en rutas SPA.
 
 ## Contenido y componentes
 

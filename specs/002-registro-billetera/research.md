@@ -1,4 +1,4 @@
-﻿# Research: Registro de usuarios de KynWallet
+# Research: Registro de usuarios de KynWallet
 
 **Fecha**: 2026-10-18. Investigación basada en código actual, plan del login, captura y CSS locales; revisión delegada de reutilización. Sin acceso directo al archivo de Figma.
 
@@ -30,7 +30,7 @@
 
 **Decision**: `/register` abre registro; `/login` y `/` abren login. App escucha `popstate` y centraliza navegación con `pushState(null, '', path)` y actualización explícita del estado. Desconocidas se normalizan con replace a `/login`. Aviso de éxito vive en App, nunca en URL, history.state ni almacenamiento. Limpiarlo al salir de login o recargar.
 
-**Rationale**: App actual monta login incondicionalmente; no basta cambiar URL. La composición necesita desmontar registro, descartar valores e ignorar respuestas pendientes. Mantener el enlace «Regístrate» del login como está evita modificar una historia anterior no solicitada. Se accede directamente a `/register`.
+**Rationale**: App actual monta login incondicionalmente; no basta cambiar URL. La composición necesita desmontar registro, descartar valores e ignorar respuestas pendientes. La aclaración del usuario confirma que «Regístrate» debe abrir `/register`, sustituyendo el aviso anterior. También se admite acceso directo a esa ruta; la autenticación y las demás acciones del login conservan su comportamiento.
 
 **Alternatives considered**: nuevo router, navegación por hash o recarga completa con query de éxito; añaden complejidad o no cumplen el destino/efimeridad. Documentar fallback SPA para rutas directas en hosting.
 

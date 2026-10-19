@@ -1,4 +1,4 @@
-﻿# Implementation Plan: Registro de usuarios de KynWallet
+# Implementation Plan: Registro de usuarios de KynWallet
 
 **Branch**: `feature/registro-johanrene-garcia` | **Date**: 2026-10-18 | **Spec**: [spec.md](./spec.md)
 
@@ -102,7 +102,7 @@ src/
       SocialButton/
       Divider/
     layout/BrandPanel/                  # variante de contenido/gradiente para registro
-    features/login/                    # login intacto salvo integración del aviso en App
+    features/login/                    # integrar enlace Regístrate y aviso; autenticación sin cambios
     features/registration/
       RegistrationScreen.tsx
       RegistrationScreen.module.css
@@ -131,7 +131,7 @@ README.md                              # ampliar ejecución y validación
 2. Implementar reglas y caso de uso con puerto inyectado; fake determinista y diagnóstico; probar éxito, error y excepciones con temporizadores controlados.
 3. Extender Checkbox y PasswordField mediante props opcionales; probar etiquetas, foco y compatibilidad del login. Checkbox tendrá etiqueta plana y botón de términos como hermano, evitando interacción anidada dentro de label.
 4. Construir reducer/hook/formulario y layout; errores en blur/envío, revalidación cruzada, guardia síncrona contra doble envío y cancelación/ignorancia de respuestas tras desmontaje.
-5. Añadir `/register`, `/login`, conservación de `/` como login y fallback de rutas desconocidas a `/login`; aviso de éxito solo en memoria. No cambiar el botón «Regístrate» del login, fuera del alcance aprobado; acceso directo documentado.
+5. Añadir `/register`, `/login`, conservación de `/` como login y fallback de rutas desconocidas a `/login`; aviso de éxito solo en memoria. Conectar «Regístrate» del login con `/register` mediante navegación accesible, sustituyendo su aviso anterior; conservar las demás acciones y cubrir el recorrido login → registro → login con una prueba de integración.
 6. Verificar referencia a 1440 × 1024, cinco anchos, ampliación y ayudas de accesibilidad. Documentar cualquier ajuste AA y su aprobación previa a integración.
 7. Actualizar README y ejecutar controles existentes; registrar cobertura base y final, resultados y limitaciones. No modificar exclusiones generales de escaneo para ocultar hallazgos.
 
