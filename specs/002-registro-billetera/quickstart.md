@@ -1,10 +1,10 @@
 # Quickstart: Ejecución y validación del registro
 
-Esta guía describe la validación prevista después de implementar el plan. En la fase de planificación aún no existen la ruta ni los tests de registro; los comandos del proyecto sí están declarados. No considerar esta guía evidencia de pruebas ejecutadas.
+El registro y sus pruebas están implementados. Esta guía permite ejecutarlos y repetir la validación; la evidencia real y los pendientes se registran en `validation.md` y `browser-evidence/results.json`.
 
 ## Preparación local
 
-Requisitos: Node.js 22.12+ (verificar engines del Vite bloqueado), npm compatible y terminal en la raíz del repositorio. Node y npm no fueron encontrados en PATH durante planificación.
+Requisitos: Node.js 22.12+ (verificar engines del Vite bloqueado), npm compatible y terminal en la raíz del repositorio. Implementación validada con Node 24.22.0 y npm 11.19.1; en esta máquina se encuentran en `C:/nvm4w/nodejs` y puede ser necesario agregar esa ruta al PATH de la terminal.
 
 ```powershell
 node --version
@@ -20,7 +20,7 @@ Tras implementación, abrir `http://localhost:5173/register`. `/login` y `/` con
 
 ## Validación del fake
 
-En `.env.local`, después de implementar la lectura de configuración:
+En `.env.local`:
 
 ```dotenv
 VITE_DEMO_REGISTRATION_MODE=success

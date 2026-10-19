@@ -1,5 +1,6 @@
 # Dependencias y artefactos
 node_modules/
+.npm-cache/
 dist/
 build/
 coverage/
@@ -27,3 +28,7 @@ CLAUDE.md
 .copilot/
 .cursor/
 .kiro/
+
+# Otros archivos de entorno no deben versionarse; conservar el ejemplo público.
+.env*
+!.env.example
