@@ -21,6 +21,7 @@ Thumbs.db
 
 
 # Agentes de IA (cada quien usa el suyo)
+/.agents/
 .gemini/
 GEMINI.md
 .claude/
